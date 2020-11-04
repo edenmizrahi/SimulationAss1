@@ -66,6 +66,7 @@ def normalDistribution(randomNumbers: list(), u, sd):
             t2 =(u + sd * t2)
             distributionList.append(t1)
             distributionList.append(t2)
+    return distributionList
 
 def normalDistributionParams(distributionList):
     mean_ = sum(distributionList) / len(distributionList)
@@ -85,7 +86,7 @@ def exponentialDistribution(randomNumbers: list(), u, t0):
         distributionList.append(t)
     return  distributionList
 
-def exponentialDistribution(distributionList):
+def exponentialDistributionParam(distributionList):
     return 1/(len(distributionList)/sum(distributionList))
 
 #weibull
