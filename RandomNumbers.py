@@ -67,7 +67,7 @@ def normalDistribution(randomNumbers: list(), u, sd):
             distributionList.append(t1)
             distributionList.append(t2)
 
-def normalDistribution(distributionList):
+def normalDistributionParams(distributionList):
     mean_ = sum(distributionList) / len(distributionList)
 
     listForSD = list()
