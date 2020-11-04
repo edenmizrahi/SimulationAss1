@@ -105,7 +105,7 @@ def weibullDistributionParams(distributionList):
     # n_=
     # return m_,n_
 
-    
+
 rn=randomNumbers(0.5,500)
 #print(exponentialDistribution(randomNumbers(0.5,500),120000,0))
 
