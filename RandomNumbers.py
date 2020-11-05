@@ -108,10 +108,12 @@ def weibullDistributionParams(distributionList):
 
 
 rn=randomNumbers(0.5,500)
+exponential_D_List = exponentialDistribution(randomNumbers(0.5,500),120000,0)
+#print(exponential_D_List)
 #print(exponentialDistribution(randomNumbers(0.5,500),120000,0))
-
+exponentialD_1_param=exponentialDistributionParam(exponential_D_List)
 #print(logarithmicNormalDistribution(randomNumbers(0.5,500),11,1.2))
 
-print(normalDistribution(rn, 42000, 663))
+#print(normalDistribution(rn, 42000, 663)
 
-print(normalDistribution(rn, 84534, 506))
+#print(normalDistribution(rn, 84534, 506))
