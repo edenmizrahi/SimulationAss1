@@ -2,7 +2,8 @@
 # Xj= (aXj-1 +b)mod m
 import numpy as np
 import math as math
-def randomNumbers (seed , num):
+
+def randomNumbers (seed ,num):
     x0=seed
     a=5
     b=3
@@ -13,7 +14,6 @@ def randomNumbers (seed , num):
         randoNums.append(xj/m)
         x0=xj
     return randoNums
-
 
 def extremeDistribution(randomNumber:list() , u , b):
     extremeList= list()

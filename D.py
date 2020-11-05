@@ -1,7 +1,5 @@
 import scipy as scipy
 from scipy.stats import t
-
-
 from RandomNumbers import *
 
 def rand_100_for_each_destribution():
