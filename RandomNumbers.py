@@ -112,6 +112,8 @@ rn=randomNumbers(0.5,500)
 
 #print(logarithmicNormalDistribution(randomNumbers(0.5,500),11,1.2))
 
-print(normalDistribution(rn, 42000, 663))
 
-print(normalDistribution(rn, 84534, 506))
+print(normalDistributionParams(normalDistribution(rn, 42000, 663)))
+
+print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
+
