@@ -84,7 +84,7 @@ def exponentialDistribution(randomNumbers: list(), u, t0):
     for i in randomNumbers:
         t= t0+(-np.log(i)/(1/u))
         distributionList.append(t)
-    return  distributionList
+    return distributionList
 
 def exponentialDistributionParam(distributionList):
     return 1/(len(distributionList)/sum(distributionList))
