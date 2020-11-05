@@ -2,7 +2,8 @@
 # Xj= (aXj-1 +b)mod m
 import numpy as np
 import math as math
-def randomNumbers (seed , num):
+
+def randomNumbers (seed ,num):
     x0=seed
     a=5
     b=3
@@ -13,7 +14,6 @@ def randomNumbers (seed , num):
         randoNums.append(xj/m)
         x0=xj
     return randoNums
-
 
 def extremeDistribution(randomNumber:list() , u , b):
     extremeList= list()
@@ -84,7 +84,7 @@ def exponentialDistribution(randomNumbers: list(), u, t0):
     for i in randomNumbers:
         t= t0+(-np.log(i)/(1/u))
         distributionList.append(t)
-    return  distributionList
+    return distributionList
 
 def exponentialDistributionParam(distributionList):
     return 1/(len(distributionList)/sum(distributionList))
@@ -108,12 +108,12 @@ def weibullDistributionParams(distributionList):
 
 
 rn=randomNumbers(0.5,500)
-exponential_D_List = exponentialDistribution(randomNumbers(0.5,500),120000,0)
-#print(exponential_D_List)
 #print(exponentialDistribution(randomNumbers(0.5,500),120000,0))
-exponentialD_1_param=exponentialDistributionParam(exponential_D_List)
+
 #print(logarithmicNormalDistribution(randomNumbers(0.5,500),11,1.2))
 
-#print(normalDistribution(rn, 42000, 663)
 
-#print(normalDistribution(rn, 84534, 506))
+print(normalDistributionParams(normalDistribution(rn, 42000, 663)))
+
+print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
+

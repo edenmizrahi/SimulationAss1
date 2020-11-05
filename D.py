@@ -1,5 +1,5 @@
 import scipy as scipy
-
+from scipy.stats import t
 from RandomNumbers import *
 
 def rand_100_for_each_destribution():
@@ -66,7 +66,7 @@ def rand_100_for_each_destribution():
 
 
 def confidence_interval (sample):
-    confidence_level = 0.95
+    confidence_level = 0.90
     degrees_freedom = len(sample) - 1
     sample_mean = np.mean(sample)
     sample_standard_error = scipy.stats.sem(sample)
@@ -76,8 +76,61 @@ def confidence_interval (sample):
 
 
 blade_mean,blade_sd,pitch_mean,pitch_sd,gearbox_mean,gearbox_sd, brake_mean, frequency_mean = rand_100_for_each_destribution()
+print ("*****Confidence Interval*****")
+print(f"Blade mean interval: {confidence_interval(blade_mean)}")
+print(f"Blade sd interval: {confidence_interval(blade_sd)}")
+print(f"Pitch mean interval: {confidence_interval(pitch_mean)}")
+print(f"Pitch sd interval: {confidence_interval(pitch_sd)}")
+print(f"Gearbox mean interval: {confidence_interval(gearbox_mean)}")
+print(f"Gearbox sd interval: {confidence_interval(gearbox_sd)}")
+print(f"Brake mean interval: {confidence_interval(brake_mean)}")
+print(f"Frequency mean interval: {confidence_interval(frequency_mean)}")
 
-print(confidence_interval(blade_mean))
-x=0;
+print()
+print ("*****Confidence Interval Top decile Bottom decile*****")
+blade_mean.sort()
+blade_mean_decile=list()
+blade_sd_decile=list()
+
+pitch_mean_decile=list()
+pitch_sd_decile=list()
+
+gearbox_mean_decile=list()
+gearbox_sd_decile=list()
+
+brake_mean_decile=list()
+
+frequency_mean_decile=list()
+
+
+for i in range(0,10):
+    blade_mean_decile.append(blade_mean[i])
+    blade_sd_decile.append(blade_sd[i])
+    pitch_mean_decile.append(pitch_mean[i])
+    pitch_sd_decile.append(pitch_sd[i])
+    gearbox_mean_decile.append(gearbox_mean[i])
+    gearbox_sd_decile.append(gearbox_sd[i])
+    brake_mean_decile.append(brake_mean[i])
+    frequency_mean_decile.append(frequency_mean[i])
+
+for i in range(90,100):
+    blade_mean_decile.append(blade_mean[i])
+    blade_sd_decile.append(blade_sd[i])
+    pitch_mean_decile.append(pitch_mean[i])
+    pitch_sd_decile.append(pitch_sd[i])
+    gearbox_mean_decile.append(gearbox_mean[i])
+    gearbox_sd_decile.append(gearbox_sd[i])
+    brake_mean_decile.append(brake_mean[i])
+    frequency_mean_decile.append(frequency_mean[i])
+
+print(f"Blade mean interval: {confidence_interval(blade_mean_decile)}")
+print(f"Blade sd interval: {confidence_interval(blade_sd_decile)}")
+print(f"Pitch sd interval: {confidence_interval(pitch_sd_decile)}")
+print(f"Pitch mean interval: {confidence_interval(pitch_mean_decile)}")
+print(f"Gearbox sd interval: {confidence_interval(gearbox_sd_decile)}")
+print(f"Gearbox mean interval: {confidence_interval(gearbox_mean_decile)}")
+print(f"Brake sd interval: {confidence_interval(brake_mean_decile)}")
+print(f"Frequency sd interval: {confidence_interval(frequency_mean_decile)}")
+
 
 
