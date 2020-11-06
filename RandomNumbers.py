@@ -124,7 +124,19 @@ def weibullDistributionParams(distributionList, m):
     n_pow_m = (1/len(weibullList)) * sum(weibullList)
     n_new = math.pow(n_pow_m, 1/m)
 
-    return n_new
+    weibullList2 = list()
+    for i in distributionList:
+        weibullList2.append(pow(i,m) * np.log(i))
+
+    weibullList3 = list()
+    for i in distributionList:
+        weibullList3.append(np.log(i))
+
+
+    m_temp = (sum(weibullList2)/sum(weibullList)) - (1/len(weibullList)*sum(weibullList3))
+    m_new = 1/m_temp
+
+    return n_new, m_new
 
 
 rn=randomNumbers(0.5,500)
