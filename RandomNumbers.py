@@ -2,6 +2,7 @@
 # Xj= (aXj-1 +b)mod m
 import numpy as np
 import math as math
+import statistics
 
 def randomNumbers (seed ,num):
     x0=seed
@@ -18,7 +19,21 @@ def randomNumbers (seed ,num):
 def extremeDistribution(randomNumber:list() , u , b):
     extremeList= list()
     for i in randomNumber:
-        extremeList.append(u-b*np.log(-np.log(i)))
+        extremeList.append(u - b * np.log(-np.log(i)))
+    return extremeList
+
+def extremeDistributionParams(distributionList):
+    mean = sum(distributionList)/len(distributionList)
+
+    newExtremeList = list()
+    for i in distributionList:
+        newExtremeList.append(pow(i-mean,2))
+    std = math.sqrt((1/len(distributionList)) * sum(newExtremeList))
+
+    loc = mean - (0.45006*std)
+    scale = (std*np.sqrt(6))/np.pi
+
+    return loc, scale
 
 #logarithmic :
 def logarithmicNormalDistribution(randomNumbers: list(), u, sd):
@@ -100,11 +115,16 @@ def weibullDistribution(randomNumbers: list(),m,n,t0):
     # n_=
     # return m_,n_
 
-def weibullDistributionParams(distributionList):
-    c=2
-    # m_=
-    # n_=
-    # return m_,n_
+def weibullDistributionParams(distributionList, m):
+    #print(distributionList)
+    weibullList = list()
+    for i in distributionList:
+        weibullList.append(pow(i,m))
+    #print(weibullList)
+    n_pow_m = (1/len(weibullList)) * sum(weibullList)
+    n_new = math.pow(n_pow_m, 1/m)
+
+    return n_new
 
 
 rn=randomNumbers(0.5,500)
@@ -112,8 +132,10 @@ rn=randomNumbers(0.5,500)
 
 #print(logarithmicNormalDistribution(randomNumbers(0.5,500),11,1.2))
 
+#print(normalDistributionParams(normalDistribution(rn, 42000, 663)))
 
-print(normalDistributionParams(normalDistribution(rn, 42000, 663)))
+#print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
 
-print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
+#print(extremeDistributionParams(extremeDistribution(rn, 65000, 370)))
 
+print(weibullDistributionParams(weibullDistribution(rn, 1.3, 66000, 0), 1.3))
