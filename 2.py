@@ -76,7 +76,7 @@ mean_yaw = extremeMinDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_yaw}")
 
-
+print()
 
 #2.2
 
@@ -89,14 +89,23 @@ print("Anderson-Darling test")
 normalDisAndersonTest = stats.anderson(minimumData, 'norm')
 print(f"normal {normalDisAndersonTest}")
 
+print()
+
 logNormalDisAndersonTest = stats.anderson(minimumData, 'logistic')
 print(f"logarithmic normal {logNormalDisAndersonTest}")
+
+print()
 
 exponentialDisAndersonTest = stats.anderson(minimumData, 'expon')
 print(f"exponential {exponentialDisAndersonTest}")
 
+print()
+
 extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
-print(f"exponential {extremeDisAndersonTest}")
+print(f"gumbel {extremeDisAndersonTest}")
+
+
+print()
 
 #weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
 #print(f"weibull {weibullDisAndersonTest}")
