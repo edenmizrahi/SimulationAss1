@@ -35,6 +35,19 @@ def extremeDistributionParams(distributionList):
 
     return loc, scale
 
+
+def extremeMinDistributionParams(distributionList):
+    mean = sum(distributionList)/len(distributionList)
+
+    newExtremeList = list()
+    for i in distributionList:
+        newExtremeList.append(pow(i-mean,2))
+    std = math.sqrt((1/len(distributionList)) * sum(newExtremeList))
+
+    loc = mean + (0.45006*std)
+    scale = (std*np.sqrt(6))/np.pi
+
+    return loc, scale
 #logarithmic :
 def logarithmicNormalDistribution(randomNumbers: list(), u, sd):
     distributionList = list()
