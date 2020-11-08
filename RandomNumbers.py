@@ -150,4 +150,4 @@ rn=randomNumbers(0.5,500)
 
 #print(extremeDistributionParams(extremeDistribution(rn, 65000, 370)))
 
-print(weibullDistributionParams(weibullDistribution(rn, 1.3, 66000, 0), 1.3))
+#print(weibullDistributionParams(weibullDistribution(rn, 1.3, 66000, 0), 1.3))
