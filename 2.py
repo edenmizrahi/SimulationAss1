@@ -1,5 +1,7 @@
 from RandomNumbers import *
 from scipy import stats
+from scipy.stats import weibull_min
+import numpy as np
 
 
 def getRandomNumbers(size, seed):
@@ -37,44 +39,44 @@ for i in range(500):
     minimumData.append(min(tempArray))
 
 print('Normal')
-mean_blade, sd_blade = normalDistributionParams(minimumData)
+mean_Normal, sd_Normal = normalDistributionParams(minimumData)
 print('Estimation:')
-print(f"Mean:  {mean_blade}, SD:  {sd_blade}")
+print(f"Mean:  {mean_Normal}, SD:  {sd_Normal}")
 
 print()
 
 print('Logarithmic Normal')
-mean_gearbox, sd_gearbox = logarithmicNormalDistributionParams(minimumData)
+mean_Logarithmic, sd_Logarithmic = logarithmicNormalDistributionParams(minimumData)
 print('Estimation:')
-print(f"Mean:  {mean_gearbox}, SD:  {sd_gearbox}")
+print(f"Mean:  {mean_Logarithmic}, SD:  {sd_Logarithmic}")
 
 print()
 
 print('Exponential')
-mean_brake = exponentialDistributionParam(minimumData)
+mean_Exponential = exponentialDistributionParam(minimumData)
 print('Estimation:')
-print(f"Mean:  {mean_brake}")
+print(f"Mean:  {mean_Exponential}")
 
 print()
 
 print('Weibull')
-mean_lubrication = weibullDistributionParams(minimumData, 1.3)
+n,m = weibullDistributionParams(minimumData, 1.3)
 print('Estimation:')
-print(f"Mean:  {mean_lubrication}")
+print(f"N:  {n}, M: {m}")
 
 print()
 
 print('Extreme maximum value')
-mean_yaw = extremeDistributionParams(minimumData)
+locMax, scaleMax = extremeDistributionParams(minimumData)
 print('Estimation:')
-print(f"Mean:  {mean_yaw}")
+print(f"Loc:  {locMax}, Scale: {scaleMax}")
 
 print()
 
 print('Extreme minimum value')
-mean_yaw = extremeMinDistributionParams(minimumData)
+locMin, scaleMin = extremeMinDistributionParams(minimumData)
 print('Estimation:')
-print(f"Mean:  {mean_yaw}")
+print(f"Loc:  {locMin}, Scale: {scaleMin}")
 
 print()
 
@@ -104,26 +106,59 @@ print()
 extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
 print(f"gumbel {extremeDisAndersonTest}")
 
+print()
+
+weibull_values = weibullDistribution(getRandomNumbers(500, 1),m,n, 0)
+weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
+print(f"weibull {weibullDisAndersonTest}")
 
 print()
 
-#weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
-#print(f"weibull {weibullDisAndersonTest}")
+gumbilMin_values = extremeDistribution(getRandomNumbers(500, 1),locMin, scaleMin)
+gumbilMinAndersonTest = stats.anderson_ksamp([minimumData,gumbilMin_values])
+print(f"gumbilMin {gumbilMinAndersonTest}")
 
+print()
+
+gumbilMax_values = extremeDistribution(getRandomNumbers(500, 1),locMax, scaleMax)
+gumbilMaxAndersonTest = stats.anderson_ksamp([minimumData,gumbilMax_values])
+print(f"gumbilMax {gumbilMaxAndersonTest}")
 print("")
 
+
+
 print("Kolmogorov-Smirnov test")
-normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_blade, sd_blade), N=500)
-print(f"normal {normalDisSmirnovTest}")
 
-exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_brake, size=500), N=500)
-print(f"exponential {exponentialDisSmirnovTest}")
+print("normal" , stats.stats.ks_2samp(minimumData,normal_values))
+print("logarithmic" , stats.stats.ks_2samp(minimumData,logarithmic_values))
+print("weibull" , stats.stats.ks_2samp(minimumData,weibull_values))
+print("exponential" , stats.stats.ks_2samp(minimumData,exponential_values))
+print("gumbel_max" , stats.stats.ks_2samp(minimumData,gumbel_values))
+print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
 
-ks_gumbel_min_test = stats.kstest(minimumData,
-                                  np.random.gumbel(loc=mean_yaw, scale=mean_yaw,
-                                                   size=500), N=500)
-print(f"exponential {exponentialDisSmirnovTest}")
+# normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_Normal, sd_Normal), N=500)
+# print(f"normal {normalDisSmirnovTest}")
+#
+# exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_Exponential, size=500), N=500)
+# ks_exp_test = stats.kstest(min_dist_vector, np.random.exponential(scale=exponential_estimate_mean, size=500), N=500)
+#
+# print(f"exponential {exponentialDisSmirnovTest}")
+#
+# logarithmicDisSmirnovTest = stats.kstest(minimumData, np.random.lognormal(scale=mean_Logarithmic, sigma=sd_Logarithmic, size=500), N=500)
+# print(f"logarithmic {logarithmicDisSmirnovTest}")
+#
+# weibullDisSmirnovTest = stats.kstest(minimumData, weibull_min.rvs(m, loc=1.3, scale=n, size=500), N=500)
+# print(f"weibull {weibullDisSmirnovTest}")
+#
+# gumbelMaxDisSmirnovTest = stats.kstest(minimumData, np.random.gumbel(loc=locMax, scale=scaleMax, size=500), N=500)
+# print(f"gumbel Max {gumbelMaxDisSmirnovTest}")
+#
+# gumbelMinDisSmirnovTest = stats.kstest(minimumData, np.random.gumbel(loc=locMin, scale=scaleMin, size=500), N=500)
+# print(f"gumbel Min {gumbelMinDisSmirnovTest}")
+
+
 print("Chi-square test")
 print("normal distribution:")
 
 print("")
+
