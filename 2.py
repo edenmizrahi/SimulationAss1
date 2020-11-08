@@ -85,8 +85,6 @@ print()
 #H0 - same distribution
 #H1 - different distribution
 
-# Chi-square test
-
 print("Anderson-Darling test")
 normalDisAndersonTest = stats.anderson(minimumData, 'norm')
 print(f"normal {normalDisAndersonTest}")
@@ -103,57 +101,57 @@ print(f"exponential {exponentialDisAndersonTest}")
 
 print()
 
-extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
-print(f"gumbel {extremeDisAndersonTest}")
+# extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
+# print(f"gumbel {extremeDisAndersonTest}")
+#
+# print()
 
-print()
-
-weibull_values = weibullDistribution(getRandomNumbers(500, 1),m,n, 0)
-weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
-print(f"weibull {weibullDisAndersonTest}")
-
-print()
-
-gumbilMin_values = extremeDistribution(getRandomNumbers(500, 1),locMin, scaleMin)
-gumbilMinAndersonTest = stats.anderson_ksamp([minimumData,gumbilMin_values])
-print(f"gumbilMin {gumbilMinAndersonTest}")
-
-print()
-
-gumbilMax_values = extremeDistribution(getRandomNumbers(500, 1),locMax, scaleMax)
-gumbilMaxAndersonTest = stats.anderson_ksamp([minimumData,gumbilMax_values])
-print(f"gumbilMax {gumbilMaxAndersonTest}")
-
-print()
-
-normal_values = normalDistribution(getRandomNumbers(500, 1),mean_Normal, sd_Normal)
-normalAndersonTest = stats.anderson_ksamp([minimumData,normal_values])
-print(f"normal {normalAndersonTest}")
-
-logarithmic_values = logarithmicNormalDistribution(getRandomNumbers(500, 1),mean_Logarithmic, sd_Logarithmic)
-logarithmicAndersonTest = stats.anderson_ksamp([minimumData,logarithmic_values])
-print(f"logarithmic {logarithmicAndersonTest}")
-
-exponential_values = exponentialDistribution(getRandomNumbers(500, 1),mean_Exponential, 0)
-exponentialAndersonTest = stats.anderson_ksamp([minimumData,exponential_values])
-print(f"logarithmic {exponentialAndersonTest}")
-
-
-print()
-
-print("Kolmogorov-Smirnov test")
-
-print("normal" , stats.stats.ks_2samp(minimumData,normal_values))
-print()
-print("logarithmic" , stats.stats.ks_2samp(minimumData,logarithmic_values))
-print()
-print("weibull" , stats.stats.ks_2samp(minimumData,weibull_values))
-print()
-print("exponential" , stats.stats.ks_2samp(minimumData,exponential_values))
-print()
-print("gumbel_max" , stats.stats.ks_2samp(minimumData,gumbilMax_values))
-print()
-print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
+# weibull_values = weibullDistribution(getRandomNumbers(500, 1),m,n, 0)
+# weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
+# print(f"weibull {weibullDisAndersonTest}")
+#
+# print()
+#
+# gumbilMin_values = extremeDistribution(getRandomNumbers(500, 1),locMin, scaleMin)
+# gumbilMinAndersonTest = stats.anderson_ksamp([minimumData,gumbilMin_values])
+# print(f"gumbilMin {gumbilMinAndersonTest}")
+#
+# print()
+#
+# gumbilMax_values = extremeDistribution(getRandomNumbers(500, 1),locMax, scaleMax)
+# gumbilMaxAndersonTest = stats.anderson_ksamp([minimumData,gumbilMax_values])
+# print(f"gumbilMax {gumbilMaxAndersonTest}")
+#
+# print()
+#
+# normal_values = normalDistribution(getRandomNumbers(500, 1),mean_Normal, sd_Normal)
+# normalAndersonTest = stats.anderson_ksamp([minimumData,normal_values])
+# print(f"normal {normalAndersonTest}")
+#
+# logarithmic_values = logarithmicNormalDistribution(getRandomNumbers(500, 1),mean_Logarithmic, sd_Logarithmic)
+# logarithmicAndersonTest = stats.anderson_ksamp([minimumData,logarithmic_values])
+# print(f"logarithmic {logarithmicAndersonTest}")
+#
+# exponential_values = exponentialDistribution(getRandomNumbers(500, 1),mean_Exponential, 0)
+# exponentialAndersonTest = stats.anderson_ksamp([minimumData,exponential_values])
+# print(f"logarithmic {exponentialAndersonTest}")
+#
+#
+# print()
+#
+# print("Kolmogorov-Smirnov test")
+#
+# print("normal" , stats.stats.ks_2samp(minimumData,normal_values))
+# print()
+# print("logarithmic" , stats.stats.ks_2samp(minimumData,logarithmic_values))
+# print()
+# print("weibull" , stats.stats.ks_2samp(minimumData,weibull_values))
+# print()
+# print("exponential" , stats.stats.ks_2samp(minimumData,exponential_values))
+# print()
+# print("gumbel_max" , stats.stats.ks_2samp(minimumData,gumbilMax_values))
+# print()
+# print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
 
 # normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_Normal, sd_Normal), N=500)
 # print(f"normal {normalDisSmirnovTest}")
@@ -174,7 +172,7 @@ print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
 #
 # gumbelMinDisSmirnovTest = stats.kstest(minimumData, np.random.gumbel(loc=locMin, scale=scaleMin, size=500), N=500)
 # print(f"gumbel Min {gumbelMinDisSmirnovTest}")
-print()
+# print()
 
 print("Chi-square test")
 
