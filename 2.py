@@ -1,10 +1,5 @@
 from RandomNumbers import *
-
-from scipy.stats import weibull_min
-from scipy.stats import exponweib
-from scipy.optimize import fmin
-import scipy.stats as st
-import chaospy
+from scipy import stats
 
 
 def getRandomNumbers(size, seed):
@@ -81,3 +76,41 @@ mean_yaw = extremeMinDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_yaw}")
 
+
+
+#2.2
+
+#H0 - same distribution
+#H1 - different distribution
+
+# Chi-square test
+
+print("Anderson-Darling test")
+normalDisAndersonTest = stats.anderson(minimumData, 'norm')
+print(f"normal {normalDisAndersonTest}")
+
+logNormalDisAndersonTest = stats.anderson(minimumData, 'logistic')
+print(f"logarithmic normal {logNormalDisAndersonTest}")
+
+exponentialDisAndersonTest = stats.anderson(minimumData, 'expon')
+print(f"exponential {exponentialDisAndersonTest}")
+
+extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
+print(f"exponential {extremeDisAndersonTest}")
+
+#weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
+#print(f"weibull {weibullDisAndersonTest}")
+
+print("")
+
+print("Kolmogorov-Smirnov test")
+normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_blade, sd_blade), N=500)
+print(f"normal {normalDisSmirnovTest}")
+
+exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_brake, size=500), N=500)
+print(f"exponential {normalDisSmirnovTest}")
+
+print("Chi-square test")
+print("normal distribution:")
+
+print("")
