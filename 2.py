@@ -36,76 +36,47 @@ for i in range(500):
 
     minimumData.append(min(tempArray))
 
-print('Blade - normal')
-print('Mean: 42000, SD: 663')
+print('Normal')
 mean_blade, sd_blade = normalDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_blade}, SD:  {sd_blade}")
 
 print()
 
-print('Pitch Control System - normal')
-print('Mean: 84534, SD: 506')
-mean_pitch, sd_pitch = normalDistributionParams(minimumData)
-print('Estimation:')
-print(f"Mean:  {mean_pitch}, SD:  {sd_pitch}")
-
-print()
-
-print('Gearbox - Logarithmic Normal')
-print('Mean: 11, SD: 1.2')
+print('Logarithmic Normal')
 mean_gearbox, sd_gearbox = logarithmicNormalDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_gearbox}, SD:  {sd_gearbox}")
 
 print()
 
-print('Brake System - Exponential')
-print('Mean: 120,000')
+print('Exponential')
 mean_brake = exponentialDistributionParam(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_brake}")
 
 print()
 
-print('Frequency converter - Exponential')
-print('Mean: 45,000')
-mean_frequency = exponentialDistributionParam(minimumData)
-print('Estimation:')
-print(f"Mean:  {mean_frequency}")
-
-print()
-
-print('Generator - Weibull')
-print('Scale: 76,000, Shape: 1.2')
-mean_generator = weibullDistributionParams(minimumData, 1.2)
-print('Estimation:')
-print(f"Mean:  {mean_generator}")
-
-print()
-
-print('Lubrication system - Weibull')
-print('Scale: 66,000, Shape: 1.3')
+print('Weibull')
 mean_lubrication = weibullDistributionParams(minimumData, 1.3)
 print('Estimation:')
 print(f"Mean:  {mean_lubrication}")
 
 print()
 
-print('Electrical system - Weibull')
-print('Scale: 35,000, Shape: 1.5')
-mean_electrical = weibullDistributionParams(minimumData, 1.5)
-print('Estimation:')
-print(f"Mean:  {mean_electrical}")
-
-print()
-
-print('Yaw system - Extreme maximum value')
-print('Location: 65,000, Scale: 370')
-
+print('Extreme maximum value')
 mean_yaw = extremeDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_yaw}")
+
+print()
+
+print('Extreme minimum value')
+mean_yaw = extremeMinDistributionParams(minimumData)
+print('Estimation:')
+print(f"Mean:  {mean_yaw}")
+
+
 
 #2.2
 
