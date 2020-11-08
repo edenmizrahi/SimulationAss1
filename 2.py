@@ -137,8 +137,12 @@ normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_blade, sd_bl
 print(f"normal {normalDisSmirnovTest}")
 
 exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_brake, size=500), N=500)
-print(f"exponential {normalDisSmirnovTest}")
+print(f"exponential {exponentialDisSmirnovTest}")
 
+ks_gumbel_min_test = stats.kstest(minimumData,
+                                  np.random.gumbel(loc=mean_yaw, scale=mean_yaw,
+                                                   size=500), N=500)
+print(f"exponential {exponentialDisSmirnovTest}")
 print("Chi-square test")
 print("normal distribution:")
 
