@@ -123,17 +123,36 @@ print()
 gumbilMax_values = extremeDistribution(getRandomNumbers(500, 1),locMax, scaleMax)
 gumbilMaxAndersonTest = stats.anderson_ksamp([minimumData,gumbilMax_values])
 print(f"gumbilMax {gumbilMaxAndersonTest}")
-print("")
+
+print()
+
+normal_values = normalDistribution(getRandomNumbers(500, 1),mean_Normal, sd_Normal)
+normalAndersonTest = stats.anderson_ksamp([minimumData,normal_values])
+print(f"normal {normalAndersonTest}")
+
+logarithmic_values = logarithmicNormalDistribution(getRandomNumbers(500, 1),mean_Logarithmic, sd_Logarithmic)
+logarithmicAndersonTest = stats.anderson_ksamp([minimumData,logarithmic_values])
+print(f"logarithmic {logarithmicAndersonTest}")
+
+exponential_values = exponentialDistribution(getRandomNumbers(500, 1),mean_Exponential, 0)
+exponentialAndersonTest = stats.anderson_ksamp([minimumData,exponential_values])
+print(f"logarithmic {exponentialAndersonTest}")
 
 
+print()
 
 print("Kolmogorov-Smirnov test")
 
 print("normal" , stats.stats.ks_2samp(minimumData,normal_values))
+print()
 print("logarithmic" , stats.stats.ks_2samp(minimumData,logarithmic_values))
+print()
 print("weibull" , stats.stats.ks_2samp(minimumData,weibull_values))
+print()
 print("exponential" , stats.stats.ks_2samp(minimumData,exponential_values))
-print("gumbel_max" , stats.stats.ks_2samp(minimumData,gumbel_values))
+print()
+print("gumbel_max" , stats.stats.ks_2samp(minimumData,gumbilMax_values))
+print()
 print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
 
 # normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_Normal, sd_Normal), N=500)
@@ -155,10 +174,49 @@ print("gumbel_min", stats.stats.ks_2samp(minimumData,gumbilMin_values))
 #
 # gumbelMinDisSmirnovTest = stats.kstest(minimumData, np.random.gumbel(loc=locMin, scale=scaleMin, size=500), N=500)
 # print(f"gumbel Min {gumbelMinDisSmirnovTest}")
-
+print()
 
 print("Chi-square test")
+
 print("normal distribution:")
+NormalDisChiSqTest = stats.chisquare(minimumData,
+                                  np.random.normal(loc=mean_Normal, scale=sd_Normal, size=500))
+print(f"normal {NormalDisChiSqTest}")
+print("")
+
+print("logarithmic distribution:")
+logNormalDisChiSqTest = stats.chisquare(minimumData,
+                               np.random.lognormal(mean=mean_Logarithmic, sigma=sd_Logarithmic,
+                                                   size=500))
+print(f"logarithmic {logNormalDisChiSqTest}")
+print("")
+
+print("exponential distribution:")
+exponentialDisChiSqTest = stats.chisquare(minimumData, np.random.exponential(scale=mean_Exponential, size=500))
+print(f"exponential {exponentialDisChiSqTest}")
+print("")
+
+print("weibull distribution:")
+weibullDisChiSqTest = stats.chisquare(minimumData,
+                              weibull_min.rvs(m, loc=1.3, scale=n,
+                                              size=500))
+print(f"weibull {weibullDisChiSqTest}")
 
 print("")
+
+print("gumbel max distribution:")
+gumbellMaxDisChiSqTest = stats.chisquare(minimumData,
+                                      np.random.gumbel(loc=locMax, scale=scaleMax,
+                                                       size=500))
+print(f"gumbel max {gumbellMaxDisChiSqTest}")
+print("")
+
+print("gumbel min distribution:")
+gumbellMinDisChiSqTest = stats.chisquare(minimumData,
+                                      np.random.gumbel(loc=locMin, scale=scaleMin,
+                                                       size=500))
+print(f"gumbel min {gumbellMinDisChiSqTest}")
+print("")
+
+
 
