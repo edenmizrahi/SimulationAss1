@@ -139,15 +139,19 @@ def weibullDistributionParams(distributionList, m):
     return n_new, m_new
 
 
-rn=randomNumbers(0.5,500)
-#print(exponentialDistribution(randomNumbers(0.5,500),120000,0))
+#print(randomNumbers(0.55,10000))
+# print(exponentialDistributionParam(exponentialDistribution(randomNumbers(0.55,500),120000,0)))
+np.random.seed(1)
+rn = np.random.uniform(0, 1, 500)
+# print(logarithmicNormalDistributionParams(logarithmicNormalDistribution(rn,11,1.2)))
 
-#print(logarithmicNormalDistribution(randomNumbers(0.5,500),11,1.2))
-
-#print(normalDistributionParams(normalDistribution(rn, 42000, 663)))
+# print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
 
 #print(normalDistributionParams(normalDistribution(rn, 84534, 506)))
 
-#print(extremeDistributionParams(extremeDistribution(rn, 65000, 370)))
+print(extremeDistributionParams(extremeDistribution(rn, 65000, 370)))
 
-print(weibullDistributionParams(weibullDistribution(rn, 1.3, 66000, 0), 1.3))
+# print(exponentialDistributionParam(exponentialDistribution(rn,45000,0)))
+
+
+# print(weibullDistributionParams(weibullDistribution(rn, 1.2, 76000, 0), 1.2))

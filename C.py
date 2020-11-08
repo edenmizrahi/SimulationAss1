@@ -1,6 +1,6 @@
 
 from RandomNumbers import *
-
+print ("2")
 def ExponentialComparison(u):
     # Random 500 values for each distribution with seed=0.5
     exponentialList1 = exponentialDistribution(randomNumbers(0.5,500),u,0)
