@@ -1,4 +1,5 @@
 from RandomNumbers import *
+from scipy import stats
 
 
 def getRandomNumbers(size, seed):
@@ -114,10 +115,29 @@ print(f"Mean:  {mean_yaw}")
 # Chi-square test
 
 print("Anderson-Darling test")
-print("normal distribution:")
+normalDisAndersonTest = stats.anderson(minimumData, 'norm')
+print(f"normal {normalDisAndersonTest}")
 
+logNormalDisAndersonTest = stats.anderson(minimumData, 'logistic')
+print(f"logarithmic normal {logNormalDisAndersonTest}")
+
+exponentialDisAndersonTest = stats.anderson(minimumData, 'expon')
+print(f"exponential {exponentialDisAndersonTest}")
+
+extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
+print(f"exponential {extremeDisAndersonTest}")
+
+#weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
+#print(f"weibull {weibullDisAndersonTest}")
 
 print("")
+
+print("Kolmogorov-Smirnov test")
+normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_blade, sd_blade), N=500)
+print(f"normal {normalDisSmirnovTest}")
+
+exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_brake, size=500), N=500)
+print(f"exponential {normalDisSmirnovTest}")
 
 print("Chi-square test")
 print("normal distribution:")
