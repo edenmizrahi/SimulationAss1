@@ -78,43 +78,5 @@ print(f"Mean:  {mean_yaw}")
 
 
 
-#2.2
 
-#H0 - same distribution
-#H1 - different distribution
 
-# Chi-square test
-
-print("Anderson-Darling test")
-normalDisAndersonTest = stats.anderson(minimumData, 'norm')
-print(f"normal {normalDisAndersonTest}")
-
-logNormalDisAndersonTest = stats.anderson(minimumData, 'logistic')
-print(f"logarithmic normal {logNormalDisAndersonTest}")
-
-exponentialDisAndersonTest = stats.anderson(minimumData, 'expon')
-print(f"exponential {exponentialDisAndersonTest}")
-
-extremeDisAndersonTest = stats.anderson(minimumData, 'gumbel')
-print(f"exponential {extremeDisAndersonTest}")
-
-#weibullDisAndersonTest = stats.anderson_ksamp([minimumData,weibull_values])
-#print(f"weibull {weibullDisAndersonTest}")
-
-print("")
-
-print("Kolmogorov-Smirnov test")
-normalDisSmirnovTest = stats.kstest(minimumData, 'norm', args=(mean_blade, sd_blade), N=500)
-print(f"normal {normalDisSmirnovTest}")
-
-exponentialDisSmirnovTest = stats.kstest(minimumData, np.random.exponential(scale=mean_brake, size=500), N=500)
-print(f"exponential {exponentialDisSmirnovTest}")
-
-ks_gumbel_min_test = stats.kstest(minimumData,
-                                  np.random.gumbel(loc=mean_yaw, scale=mean_yaw,
-                                                   size=500), N=500)
-print(f"exponential {exponentialDisSmirnovTest}")
-print("Chi-square test")
-print("normal distribution:")
-
-print("")
