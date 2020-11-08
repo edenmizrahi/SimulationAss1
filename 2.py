@@ -1,6 +1,13 @@
 from RandomNumbers import *
 
-rn = randomNumbers(0.5, 500)
+
+def getRandomNumbers(size, seed):
+    np.random.seed(seed)
+    list = np.random.uniform(0, 1, size)
+    return list
+
+
+rn = getRandomNumbers(500, 1)
 
 blade = normalDistribution(rn, 42000, 663)
 pitch = normalDistribution(rn, 84534, 506)
