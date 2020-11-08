@@ -98,3 +98,21 @@ print('Location: 65,000, Scale: 370')
 mean_yaw = extremeDistributionParams(minimumData)
 print('Estimation:')
 print(f"Mean:  {mean_yaw}")
+
+#2.2
+
+#H0 - same distribution
+#H1 - different distribution
+
+# Chi-square test
+
+print("Anderson-Darling test")
+print("normal distribution:")
+
+
+print("")
+
+print("Chi-square test")
+print("normal distribution:")
+
+print("")
